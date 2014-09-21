@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>projeto</artifactId>
+        <groupId>br.gov.bcb.batch.exemplo</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>projeto-ear</artifactId>
+    <packaging>ear</packaging>
+
+    <name>projeto - ear</name>
+
+    <dependencies>
+
+        <!-- Depend on the ejb module and war so that we can package them -->
+        <dependency>
+            <groupId>br.gov.bcb.batch.exemplo</groupId>
+            <artifactId>projeto-web</artifactId>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>br.gov.bcb.batch.exemplo</groupId>
+            <artifactId>projeto-ejb</artifactId>
+            <type>ejb</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <!-- Enable liberty-maven-plugin -->
+            <plugin>
+                <groupId>net.wasdev.wlp.maven.plugins</groupId>
+                <artifactId>liberty-maven-plugin</artifactId>
+                <version>1.0</version>
+                <!-- Specify configuration, executions for liberty-maven-plugin -->
+                <configuration>
+                    <assemblyArchive>/home/andre/projetos/liberty-server/wlp-1.0-SNAPSHOT.zip</assemblyArchive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>${version.ear.plugin}</version>
+                <configuration>
+                    <!-- Tell Maven we are using Java EE 6 -->
+                    <version>6</version>
+                    <!-- Use Java EE ear libraries as needed. Java EE ear libraries 
+                        are in easy way to package any libraries needed in the ear, and automatically 
+                        have any modules (EJB-JARs and WARs) use them -->
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <modules>
+                    <!-- Default context root of the web app is /projeto-web. 
+                        If a custom context root is needed, uncomment the following snippet to
+                        register our War as a web module and set the contextRoot property -->
+                    <!--
+                    <webModule>
+                        <groupId>br.gov.bcb.batch.exemplo</groupId>
+                        <artifactId>projeto-web</artifactId>
+                        <contextRoot>/projeto</contextRoot>
+                    </webModule>
+                    -->
+                    </modules>
+                    <fileNameMapping>no-version</fileNameMapping>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+   
+    <profiles>
+        <profile>
+            <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
+            <!-- Use this profile for any OpenShift specific customization your app will need. -->
+            <!-- By default that is to put the resulting archive into the 'deployments' folder. -->
+            <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
+            <id>openshift</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-ear-plugin</artifactId>
+                        <version>${version.ear.plugin}</version>
+                        <configuration>
+                            <outputDirectory>deployments</outputDirectory>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

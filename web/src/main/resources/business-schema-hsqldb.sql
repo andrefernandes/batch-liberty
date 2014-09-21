@@ -1,0 +1,1 @@
+CALL current_timestamp

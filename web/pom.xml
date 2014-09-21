@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <parent>
+      <artifactId>projeto</artifactId>
+      <groupId>br.gov.bcb.batch.exemplo</groupId>
+      <version>1.0-SNAPSHOT</version>
+   </parent>
+
+   <artifactId>projeto-web</artifactId>
+   <packaging>war</packaging>
+
+   <name>projeto - web</name>
+
+   <dependencies>
+
+      <!-- Dependency on the EJB module so we can use it's services if needed -->
+      <dependency>
+         <groupId>br.gov.bcb.batch.exemplo</groupId>
+         <artifactId>projeto-ejb</artifactId>
+         <type>ejb</type>
+         <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+           <groupId>javax</groupId>
+           <artifactId>javaee-api</artifactId>
+      </dependency>
+      <dependency>
+           <groupId>javax.batch</groupId>
+           <artifactId>javax.batch-api</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>javax.enterprise</groupId>
+         <artifactId>cdi-api</artifactId>
+      </dependency>
+
+      <dependency>
+           <groupId>org.springframework.batch</groupId>
+           <artifactId>spring-batch-core</artifactId>
+      </dependency>
+      <dependency>
+           <groupId>org.springframework.batch</groupId>
+           <artifactId>spring-batch-infrastructure</artifactId>
+      </dependency>
+       <dependency>
+           <groupId>org.springframework.batch</groupId>
+           <artifactId>spring-batch-admin-manager</artifactId>
+       </dependency>
+       <dependency>
+           <groupId>org.springframework.batch</groupId>
+           <artifactId>spring-batch-admin-resources</artifactId>
+       </dependency>
+      <dependency>
+           <groupId>org.springframework.batch</groupId>
+           <artifactId>spring-batch-test</artifactId>
+      </dependency>
+       <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-core</artifactId>
+       </dependency>
+      <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-context</artifactId>
+      </dependency>
+       <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-jdbc</artifactId>
+       </dependency>
+       <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-aop</artifactId>
+       </dependency>
+       <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-beans</artifactId>
+       </dependency>
+       <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-web</artifactId>
+       </dependency>
+       <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-webmvc</artifactId>
+       </dependency>
+       <dependency>
+           <groupId>com.fasterxml.jackson.core</groupId>
+           <artifactId>jackson-core</artifactId>
+       </dependency>
+       <dependency>
+           <groupId>com.fasterxml.jackson.core</groupId>
+           <artifactId>jackson-databind</artifactId>
+       </dependency>
+
+       <dependency>
+           <groupId>commons-dbcp</groupId>
+           <artifactId>commons-dbcp</artifactId>
+       </dependency>
+       <dependency>
+           <groupId>hsqldb</groupId>
+           <artifactId>hsqldb</artifactId>
+       </dependency>
+
+   </dependencies>
+
+   <build>
+      <finalName>${project.artifactId}</finalName>
+      <plugins>
+         <plugin>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>${version.war.plugin}</version>
+            <configuration>
+               <!-- Java EE 6 doesn't require web.xml, Maven needs to catch up! -->
+               <failOnMissingWebXml>false</failOnMissingWebXml>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+
+</project>
