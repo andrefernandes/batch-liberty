@@ -15,7 +15,7 @@ Go figure.
 This project is a merge of:
 
 * JSR-352 batchlets (Spring-Batch 3 implementation, but could be any other)
-* Spring-Batch-Admin as a convenient management console (check the "web" project)
+* Spring-Batch-Admin 1.3.0 as a convenient management console (check the "web" project)
 * WebSphere Liberty Profile as a test local server.
 
 PLease note that WebSphere Liberty 8.5.x is a lightweight JEE 6 server that can be
