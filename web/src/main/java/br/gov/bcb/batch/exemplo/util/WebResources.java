@@ -16,9 +16,13 @@
  */
 package br.gov.bcb.batch.exemplo.util;
 
-/**
- *
- */
-public class WebResources {
+import javax.annotation.Resource;
+import javax.sql.DataSource;
 
+/**
+ * Example of resource-ref declaration with annotations
+ */
+@Resource(name = "jdbc/batch",authenticationType = Resource.AuthenticationType.CONTAINER,shareable = true,lookup = "jdbc/batch")
+public class WebResources {
+    private DataSource ds;
 }

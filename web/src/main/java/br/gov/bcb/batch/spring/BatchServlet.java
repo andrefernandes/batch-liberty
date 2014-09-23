@@ -11,4 +11,3 @@ import javax.servlet.annotation.WebInitParam;
 public class BatchServlet extends org.springframework.web.servlet.DispatcherServlet {
 
 }
-
