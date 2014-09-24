@@ -5,10 +5,13 @@ Author: André Fernandes
 ## Intro
 
 This project demonstrates that we must not wait for JEE 7 in order to use JSR 352 batches
-on our projects running on JEE 6 servers. Some of us are still tied to old-school IT
+on our projects running on JEE 6 servers.
+
+Some of us are still tied to old-school IT
 management/infrastructure who believes (despite all abundant evidence, in times of clouds,
 lightweight containers and Docker) that big-fat application servers are easier to manage.
-Go figure.
+Go figure. So if you need to run JSR-352 batches on your WAS8.5, for example, you can use
+this code.
 
 ## What do we have here?
 
@@ -16,6 +19,9 @@ This project is a merge of:
 
 * JSR-352 batchlets (Spring-Batch 3 implementation, but could be any other)
 * Spring-Batch-Admin 1.3.0 as a convenient management console (check the "web" project)
+  and REST API
+* Complimentary REST API for the services that Spring-Batch-Admin do not provide for
+  JSR jobs (like "start" and "stop")
 * WebSphere Liberty Profile as a test local server.
 
 PLease note that WebSphere Liberty 8.5.x is a lightweight JEE 6 server that can be
